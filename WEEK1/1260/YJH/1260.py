@@ -14,7 +14,6 @@ for i in range(edge):
     graph[num2] = sorted(graph[num2])
 
 def dfs(start, graph):
-
     if not visited_dfs[start]:
         visited_dfs[start] = True
         print(start, end = ' ')
