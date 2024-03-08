@@ -1,25 +1,16 @@
-/*
-미완성
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 
 #define MAX 9
 
 int graph[MAX][MAX];
-int modified_graph[MAX][MAX];
-bool visited[MAX][MAX];
 int row, col, result = 0;
 int direction[4][2] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
 queue<pair<int, int>> q;
 
-void solve();
 void wall(int);
 void modified_bfs();
-int secure_areas();
-void clear_visited();
 
 int main()
 {
@@ -31,28 +22,14 @@ int main()
 
     for (int i = 1; i <= row; i++)
         for (int j = 1; j <= col; j++)
-        {
-            int num;
-            cin >> num;
-            graph[i][j] = modified_graph[i][j] = num;
-
-            if (num == 2)
-                q.push(make_pair(i, j));
-        }
+            cin >> graph[i][j];
 
     for (int i = 1; i <= row; i++)
-    {
         for (int j = 1; j <= col; j++)
-        {
-            if (modified_graph[i][j] == 0)
-            {
-                modified_graph[i][j] = 1;
-                wall(1);
+            if (graph[i][j] == 2)
+                q.push(make_pair(i, j));
 
-                modified_graph[i][j] = 0;
-            }
-        }
-    }
+    wall(0);
 
     cout << result;
 
@@ -61,36 +38,36 @@ int main()
 
 void wall(int cnt)
 {
-    // cnt는 지금까지 세워놓은 벽의 개수
     if (cnt == 3)
     {
         modified_bfs();
-        result = max(secure_areas(), result);
-        clear_visited();
         return;
     }
 
     for (int i = 1; i <= row; i++)
-    {
         for (int j = 1; j <= col; j++)
-        {
-            if (modified_graph[i][j] == 0)
+            if (graph[i][j] == 0)
             {
-                modified_graph[i][j] = 1;
+                graph[i][j] = 1;
                 wall(cnt + 1);
 
-                modified_graph[i][j] = 0;
+                graph[i][j] = 0;
             }
-        }
-    }
 }
 
 void modified_bfs()
 {
-    while (!q.empty())
+    queue<pair<int, int>> temp_q = q;
+
+    int modified_graph[MAX][MAX];
+    for (int i = 1; i <= row; i++)
+        for (int j = 1; j <= col; j++)
+            modified_graph[i][j] = graph[i][j];
+
+    while (!temp_q.empty())
     {
-        pair<int, int> tmp = q.front();
-        q.pop();
+        pair<int, int> tmp = temp_q.front();
+        temp_q.pop();
 
         for (int i = 0; i < 4; i++)
         {
@@ -100,31 +77,19 @@ void modified_bfs()
             if (ti < 1 || ti > row || tj < 1 || tj > col)
                 continue;
 
-            if (visited[ti][tj] == false && modified_graph[ti][tj] == 0)
+            if (modified_graph[ti][tj] == 0)
             {
-                visited[ti][tj] = true;
                 modified_graph[ti][tj] = 2;
-                q.push(make_pair(ti, tj));
+                temp_q.push(make_pair(ti, tj));
             }
         }
     }
-}
 
-int secure_areas()
-{
-    int cnt = 0;
-
+    int count = 0;
     for (int i = 1; i <= row; i++)
         for (int j = 1; j <= col; j++)
             if (modified_graph[i][j] == 0)
-                cnt += 1;
+                count += 1;
 
-    return cnt;
-}
-
-void clear_visited()
-{
-    for (int i = 0; i <= row; i++)
-        for (int j = 0; j <= col; j++)
-            visited[i][j] = false;
+    result = max(count, result);
 }
