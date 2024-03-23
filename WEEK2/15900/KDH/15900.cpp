@@ -1,26 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int n;
+vector<int> tree[500001];
+bool visited[500001];
+long long cnt = 0;
 
-typedef struct Node *ptr;
-typedef struct Node
-{
-    int data;
-    vector<ptr> ptrs;
-
-    Node(int k)
-    {
-        data = k;
-    }
-
-    ~Node(){};
-
-} Node;
-
-ptr search_node(ptr root, int k);
-ptr create_node(int k);
-void insert_node(ptr parent, int child);
+void dfs(int x, long long level);
 
 int main()
 {
@@ -28,41 +13,43 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
+    int n;
     cin >> n;
-    ptr root_node = create_node(1);
 
     for (int i = 0; i < n - 1; i++)
     {
-        int a, b;
-        cin >> a >> b;
+        int x, y;
+        cin >> x >> y;
 
-        ptr parent = search_node(root_node, a);
-        if (parent)
-            insert_node(parent, b);
-        else
-            insert_node(search_node(root_node, b), a);
+        tree[x].push_back(y);
+        tree[y].push_back(x);
     }
+
+    dfs(1, 0);
+
+    if (cnt % 2 == 1)
+        cout << "Yes";
+    else
+        cout << "No";
 
     return 0;
 }
 
-ptr search_node(ptr root, int value)
+void dfs(int x, long long level)
 {
-    if (root == NULL || root->data == value)
-        return root;
+    visited[x] = true;
 
-    for (auto each : root->ptrs)
+    if (x != 1 && tree[x].size() == 1)
     {
-        return search_node(each, value);
+        cnt += level;
+        return;
     }
-}
 
-ptr create_node(int k)
-{
-    return new Node(k);
-}
-
-void insert_node(ptr parent, int k)
-{
-    parent->ptrs.push_back(create_node(k));
+    for (auto each : tree[x])
+    {
+        if (!visited[each])
+        {
+            dfs(each, level + 1);
+        }
+    }
 }
