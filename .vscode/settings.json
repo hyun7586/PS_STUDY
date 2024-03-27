@@ -1,6 +1,7 @@
 {
   "files.associations": {
     "queue": "cpp",
+<<<<<<< HEAD
     "algorithm": "cpp",
     "array": "cpp",
     "atomic": "cpp",
@@ -90,5 +91,8 @@
     "xtr1common": "cpp",
     "xtree": "cpp",
     "xutility": "cpp"
+=======
+    "iostream": "cpp"
+>>>>>>> 3f6ad2bec472b20a09f45e14cd5451aca88c226b
   }
 }
