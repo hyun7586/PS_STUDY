@@ -8,7 +8,6 @@ if __name__ == "__main__":
     triangle = []
     dp = [[0 for k in range(i+1)] for i in range(n)]
 
-
     for i in range(n):    
         triangle.append(list(map(int,input().split())))
 
@@ -26,7 +25,10 @@ if __name__ == "__main__":
 
             elif k == i:
                 dp[i][k] = triangle[i][k] + dp[i-1][k-1]
-
+            
+            elif k == i:
+                dp[i][k] = triangle[i][k] + dp[i-1][k-1]
+            
             else:
                 dp[i][k] = max(triangle[i][k] + dp[i-1][k-1], triangle[i][k] + dp[i-1][k])
 
