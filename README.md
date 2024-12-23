@@ -1,8 +1,13 @@
 # PS_STUDY
 
-## folder structure
+## Folder structure
 
 [n주차]/[platform_문제 번호]/[이름]
+
+## File name
+
+`{이름}_{platform}{문제번호(이름)}.{확장자}`
+   > ex) KDH_BOJ10828.cpp, KDH_LEET29.cpp, KDH_PROG전화번호목록.cpp
 
 ## Commit & Pull request
 
