@@ -11,13 +11,13 @@
 
 ## Commit & Pull request
 
-1. `{이름}/{create || modify || ...} {platform_문제번호}` 형식의 branch 생성
-   > ex) `KDH create BOJ_10828`
+1. `{이름}/{create || modify || ...}-{platform-문제번호}` 형식의 branch 생성
+   > ex) `KDH/create-BOJ-10828`
    
 2. 생성된 branch 내에서 `[n주차]/[platform_문제 번호]/[이름]` 디렉토리 생성 후 풀이 코드 및 리뷰 readme 파일 생성
 
 3. 문제 풀이 완료 시 Pull Request 생성
-   - PR 제목: `{이름}/ {create || modify || ...} {platform_문제번호}` (branch name과 동일)
+   - PR 제목: `{이름}/{create || modify || ...} {platform_문제번호}` (branch name과 동일)
 
 ## Commit Convention
 
