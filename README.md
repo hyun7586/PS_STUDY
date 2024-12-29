@@ -2,28 +2,46 @@
 
 ## Folder structure
 
-[n주차]/[platform_문제 번호]/[이름]
+`[n주차]/[platform_문제 번호]/[이름]`
 
-## File name
 
-`{이름}_{platform}{문제번호(이름)}.{확장자}`
-   > ex) KDH_BOJ10828.cpp, KDH_LEET29.cpp, KDH_PROG전화번호목록.cpp
+## Conventions
+
+### File naming
+`{name}_{platform}_{문제번호 || 문제이름}.{확장자}`
+모두 대문자로 작성
+  > ex) KDH_BOJ_10828.cpp, KDH_LEET_29.cpp, KDH_PROG_전화번호목록.cpp
+
+### Branch naming
+`{NAME}/{create || modify || ...}-{platform}-{(문제번호)}`
+  > ex) KDH/create-boj-2126
+
+### Commit message
+```
+{NAME}: {create || modify || ...} {platform} {문제번호} {문제이름}
+
+new file: {directory/file}
+new file: {directory/file}
+modify: {directory/file}
+- 변경사항 명시
+```
+추가한 파일 목록을 모두 작성한다.
+소스코드, 실행파일, readme 파일 모두 commit한다.
+modify 작업을 수행했으면 어떤 부분을 수정했는지 commit message에 명시한다.
+
+### PR title naming
+`{NAME}: {create || modify || ...} {platform} {(문제번호)} {문제이름}`
+  > ex) KDH: create boj 2346 풍선 터뜨리기기
 
 ## Commit & Pull request
 
-1. `{이름}/{create || modify || ...}-{platform-문제번호}` 형식의 branch 생성
-   > ex) `KDH/create-BOJ-10828`
+1. `{NAME}/{create || modify || ...}-{platform}-{(문제번호)}` 형식의 branch 생성
    
-2. 생성된 branch 내에서 `[n주차]/[platform_문제 번호]/[이름]` 디렉토리 생성 후 풀이 코드 및 리뷰 readme 파일 생성
+2. 생성된 branch 내에서 `[n주차]/[platform_문제 번호]/[이름]` 디렉토리 생성 후 **풀이 코드 및 리뷰 readme 파일** 생성
 
 3. 문제 풀이 완료 시 Pull Request 생성
-   - PR 제목: `{이름}/{create || modify || ...} {platform_문제번호}` (branch name과 동일)
+   - PR 제목: `{NAME}: {create || modify || ...} {platform} {(문제번호)} {문제이름}`
 
-## Commit Convention
-
-- 문제 파일 생성 : `create {platform_문제 번호} {문제 제목}
-- 기존 코드 수정 : `modify {platform_문제 번호} {문제 제목}
-- Programmers의 경우에는 문제 제목만 명시
 
 ## Code Review
 
